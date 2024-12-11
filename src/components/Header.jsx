@@ -9,6 +9,7 @@ import RegistrationForm from '../components/RegistrationForm'
 import DonatedForm from '../components/DonatedForm'
 
 function Header() {
+  
   return (
     <>
       <Navbar expand="md" className="bg-danger p-3  fixed-top" variant="dark">
@@ -33,7 +34,7 @@ function Header() {
                 />
               </div>
 
-              <RegistrationForm/>
+              <RegistrationForm  />
 
               <DonatedForm/>
 
