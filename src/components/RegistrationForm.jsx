@@ -2,6 +2,7 @@ import React from 'react'
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import { registerlists } from '../Services/allApi';
 
 
 function RegistrationForm() {
@@ -43,13 +44,15 @@ function RegistrationForm() {
   };
 
  
-  const handleSubmit = (e) => {
+  const handleSubmit =async (e) => {
     e.preventDefault(); 
     const formErrors = validate();
     if (Object.keys(formErrors).length > 0) {
       setErrors(formErrors);
     } else {
       setErrors({});
+      const result =await registerlists (formData)
+      console.log (result)
       alert(`Form submitted successfully! \nData: ${JSON.stringify(formData, null, 2)}`);
      
       setFormData({
@@ -59,6 +62,7 @@ function RegistrationForm() {
         location:'',
         contact: '',
       });
+      handleClose ()
     }
   };
 
