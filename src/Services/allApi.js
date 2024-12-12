@@ -1,8 +1,8 @@
 import {commonApi} from"./commonApi";
 import {serverUrl} from "./ServerUrl";
 
-export const registerlists = async (reqbody) => {
-   return await commonApi("post", `${serverUrl}/RegisteredDetails`, reqbody);
+export const registerlists = async (reqBody) => {
+   return await commonApi("post", `${serverUrl}/RegisteredDetails`, reqBody);
 };
 export const   registerlistered = async () => {
 

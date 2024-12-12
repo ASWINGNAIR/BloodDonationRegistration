@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { registerlistered } from '../Services/allApi';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
+
 
 function RegisteredList() {
   const [RegisteredData, setRegisteredData] = useState([]);
@@ -28,25 +31,27 @@ function RegisteredList() {
         <div>
           <table className='w-100 border border-secondary mb-5'>
             <thead>
-              <tr>
+              <tr className='text-center'>
                 <th className='border border-secondary bg-danger text-white'>#</th>
                 <th className='border border-secondary bg-danger text-white'>Name</th>
                 <th className='border border-secondary bg-danger text-white'>Age</th>
                 <th className='border border-secondary bg-danger text-white'>Blood Group</th>
                 <th className='border border-secondary bg-danger text-white'>Location</th>
                 <th className='border border-secondary bg-danger text-white'>Contact</th>
+                <th className='border border-secondary bg-danger text-white'>Action</th>
               </tr>
             </thead>
             <tbody>
               {RegisteredData.length > 0 ? (
                 RegisteredData.map((item, index) => (
-                  <tr key={index}>
+                  <tr className='text-center' key={index}>
                     <td className='border border-secondary'>{index + 1}</td>
                     <td className='border border-secondary'>{item?.name}</td>
                     <td className='border border-secondary'>{item?.age}</td>
                     <td className='border border-secondary'>{item?.bloodgroup}</td>
                     <td className='border border-secondary'>{item?.location}</td> {/* Add this if needed */}
                     <td className='border border-secondary'>{item?.contact}</td>
+                    <td className='border border-secondary'><FontAwesomeIcon icon={faTrash} style={{color: "#ad0101",}} /></td>
                   </tr>
                 ))
               ) : (

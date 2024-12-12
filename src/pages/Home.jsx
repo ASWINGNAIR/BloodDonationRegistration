@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 
 
 function Home() {
@@ -13,6 +12,8 @@ function Home() {
                 <a href="#About" className='p-3 fs-5 fw-bold text-danger' style={{ textDecoration: "none" }} >About Us</a>
                 <a href="#facts" className='p-3 fs-5 fw-bold text-danger' style={{ textDecoration: "none" }}>Blood Donation Facts</a>
                 <a href="#donors" className='p-3 fs-5 fw-bold text-danger' style={{ textDecoration: "none" }}>Who can/ Can't Donate</a>
+                <a href="/RegisteredList" className='p-3 fs-5 fw-bold text-danger' style={{ textDecoration: "none" }}>Registered List</a>
+                <a href="/DonatedList" className='p-3 fs-5 fw-bold text-danger' style={{ textDecoration: "none" }}>Donated List</a>
               </div>
             </div> 
           </div>

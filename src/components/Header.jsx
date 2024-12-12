@@ -3,10 +3,11 @@ import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {  Nav} from "react-bootstrap";
-import { faDroplet } from '@fortawesome/free-solid-svg-icons';
+import { faDroplet, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import RegistrationForm from '../components/RegistrationForm'
 import DonatedForm from '../components/DonatedForm'
+
 
 function Header() {
   
@@ -31,6 +32,16 @@ function Header() {
                   placeholder="Find your blood group"
                   className="form-control bg-transparent text-white rounded-5 p-3 ps-5 border border-white"
                   style={{ height: "45px", }}
+                />
+                <FontAwesomeIcon
+                  icon={faMagnifyingGlass}
+                  className="position-absolute"
+                  style={{
+                    top: "50%",
+                    left: "15px",
+                    transform: "translateY(-50%)",
+                    color: "white",
+                  }}
                 />
               </div>
 
