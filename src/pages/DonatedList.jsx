@@ -1,9 +1,9 @@
 import React from 'react'
 
-function RegisteredList() {
+function DonatedList() {
   return (
     <>
-      <div className='py-5 px-4'>
+    <div className='py-5 px-4'>
         <h1 className='text-danger text-center text-4xl mb-5 px-3  py-5'>Donated List</h1>
         <div className=''>
           <table className=' w-100 border border-secondary'>
@@ -33,8 +33,12 @@ function RegisteredList() {
           </table>
         </div>
       </div>
+    
+    
+    
+    
     </>
   )
 }
 
-export default RegisteredList
+export default DonatedList

@@ -3,62 +3,64 @@ import { registerlistered } from '../Services/allApi';
 
 function RegisteredList() {
   const [RegisteredData, setRegisteredData] = useState([]);
-
-
+  const [loading, setLoading] = useState(true);
 
   const fetchRegisteredData = async () => {
     try {
       const result = await registerlistered();
-      console.log('Fetched data:', result); // Debug log
-      setRegisteredData(result.data); // Access `result.data` if necessary
+      console.log('Fetched data:', result);
+      setRegisteredData(result.data);
     } catch (error) {
       console.error('Error fetching registered data:', error);
+    } finally {
+      setLoading(false);
     }
   };
-  
 
   useEffect(() => {
-    fetchRegisteredData()
-  }, [RegisteredData]);
+    fetchRegisteredData();
+  }, []);
 
   return (
-    <>
-      <div className='pt-5'>
-        <h1 className='text-danger text-center text-4xl mb-5 py-5'>Registered List</h1>
-        <div>
-          <table className='w-100 border border-secondary mb-5'>
-            <thead>
+    <div className='pt-5'>
+      <h1 className='text-danger text-center text-4xl mb-5 py-5'>Registered List</h1>
+      <div>
+        <table className='w-100 border border-secondary mb-5'>
+          <thead>
+            <tr>
+              <th className='border border-secondary bg-danger text-white'>#</th>
+              <th className='border border-secondary bg-danger text-white'>Name</th>
+              <th className='border border-secondary bg-danger text-white'>Age</th>
+              <th className='border border-secondary bg-danger text-white'>Blood Group</th>
+              <th className='border border-secondary bg-danger text-white'>Location</th>
+              <th className='border border-secondary bg-danger text-white'>Contact</th>
+            </tr>
+          </thead>
+          <tbody>
+            {loading ? (
               <tr>
-                <th className='border border-secondary bg-danger text-white'>#</th>
-                <th className='border border-secondary bg-danger text-white'>Name</th>
-                <th className='border border-secondary bg-danger text-white'>Age</th>
-                <th className='border border-secondary bg-danger text-white'>Blood Group</th>
-                <th className='border border-secondary bg-danger text-white'>Location</th>
-                <th className='border border-secondary bg-danger text-white'>Contact</th>
+                <td colSpan="6" className="text-center">Loading...</td>
               </tr>
-            </thead>
-            <tbody>
-              {RegisteredData.length > 0 ? (
-                RegisteredData.map((item, index) => (
-                  <tr key={index}>
-                    <td className='border border-secondary'>{index + 1}</td>
-                    <td className='border border-secondary'>{item?.name}</td>
-                    <td className='border border-secondary'>{item?.age}</td>
-                    <td className='border border-secondary'>{item?.bloodgroup}</td>
-                    <td className='border border-secondary'>{item?.location}</td> {/* Add this if needed */}
-                    <td className='border border-secondary'>{item?.contact}</td>
-                  </tr>
-                ))
-              ) : (
-                <tr>
-                  <td colSpan="6" className="text-center">No data available</td>
+            ) : RegisteredData.length > 0 ? (
+              RegisteredData.map((item, index) => (
+                <tr key={item.id || index}>
+                  <td className='border border-secondary'>{index + 1}</td>
+                  <td className='border border-secondary'>{item?.name}</td>
+                  <td className='border border-secondary'>{item?.age}</td>
+                  <td className='border border-secondary'>{item?.bloodGroup}</td>
+                  <td className='border border-secondary'>{item?.location}</td>
+                  <td className='border border-secondary'>{item?.contact}</td>
                 </tr>
-              )}
-            </tbody>
-          </table>
-        </div>
+              ))
+            ) : (
+              <tr>
+                <td colSpan="6" className="text-center">No data available</td>
+              </tr>
+            )}
+          </tbody>
+        </table>
       </div>
-    </>
+    </div>
   );
 }
 
