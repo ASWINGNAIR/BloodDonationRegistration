@@ -1,14 +1,31 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { getDonationlistApi } from '../Services/allApi'
+
 
 function RegisteredList() {
+
+  const [donation ,setDonation] =useState([])
+
+  const getAllDetails = async()=>{
+    const result = await getDonationlistApi()
+      
+    setDonation(result.data)
+  }
+  console.log(donation);
+  
+  useEffect(()=>{
+    getAllDetails()
+  },[])
+
   return (
     <>
       <div className='py-5 px-4'>
         <h1 className='text-danger text-center text-4xl mb-5 px-3  py-5'>Donated List</h1>
-        <div className=''>
+        { donation?.length>0?
+          <div>
           <table className=' w-100 border border-secondary'>
             <thead>
-              <tr>
+              <tr className='text-center'>
                 <th className='border border-secondary bg-danger text-white'>#</th>
                 <th className='border border-secondary bg-danger text-white'>Name</th>
                 <th className='border border-secondary bg-danger text-white'>Age</th>
@@ -20,18 +37,26 @@ function RegisteredList() {
             </thead>
 
             <tbody>
-              <tr>
-                <td className='border border-secondary'>1</td>
-                <td className='border border-secondary'>Aswin</td>
-                <td className='border border-secondary'>23</td>
-                <td className='border border-secondary'>B+</td>
-                <td className='border border-secondary'>Alappuzha</td>
-                <td className='border border-secondary'>8976357289</td>
-                <td className='border border-secondary'>15/11/2024</td>
+              {donation?.map((item , index)=>(
+                <tr className='text-center'>
+                <td className='border border-secondary'>{index+1}</td>
+                <td className='border border-secondary'>{item?.name}</td>
+                <td className='border border-secondary'>{item?.age}</td>
+                <td className='border border-secondary'>{item?.bloodGroup}</td>
+                <td className='border border-secondary'>{item?.location}</td>
+                <td className='border border-secondary'>{item?.contact}</td>
+                <td className='border border-secondary'>{item?.donationDate}</td>
               </tr>
+              ))
+                }
             </tbody>
           </table>
         </div>
+          :
+        <div>
+        <h4 className='text-center text-danger'>No Donations done Yet..</h4>
+        </div>}
+
       </div>
     </>
   )

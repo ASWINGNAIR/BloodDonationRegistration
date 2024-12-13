@@ -18,8 +18,7 @@ function RegistrationForm() {
     bloodGroup: '',
     location:'',
     contact: '',
-  })
-  
+  });
 
   
   const [errors, setErrors] = useState({});
@@ -63,21 +62,10 @@ function RegistrationForm() {
         location:'',
         contact: '',
       });
-      handleCancel ()
+      handleClose ()
     }
   };
 
-
-  const handleCancel=()=>{
-    setFormData({
-        name: '',
-        age: '',
-        bloodGroup: '',
-        location:'',
-        contact: ''
-    })
-    handleClose()
-  }
   
   
 
@@ -179,7 +167,7 @@ function RegistrationForm() {
 
    </Modal.Body>
    <Modal.Footer style={modalStyles.modalContent}>
-     <Button className='btn btn-danger' variant="secondary" onClick={handleCancel}>
+     <Button className='btn btn-danger' variant="secondary" onClick={handleClose}>
        Close
      </Button>
      

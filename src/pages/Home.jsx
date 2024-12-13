@@ -2,13 +2,15 @@ import React from 'react'
 
 
 function Home() {
+
+
   return (
     <> 
       <div className="container-fluid p-4 bg-white">
         <div className="row" id='About'>
           <div className="col-md-3" >
             <div className='p-3 rounded shadow-lg d-none d-md-block' style={{ width: "350px", marginTop: "80px", position: "fixed", top: "80px", left: "20px"}} >
-              <div class="d-flex flex-column">
+              <div className="d-flex flex-column">
                 <a href="#About" className='p-3 fs-5 fw-bold text-danger' style={{ textDecoration: "none" }} >About Us</a>
                 <a href="#facts" className='p-3 fs-5 fw-bold text-danger' style={{ textDecoration: "none" }}>Blood Donation Facts</a>
                 <a href="#donors" className='p-3 fs-5 fw-bold text-danger' style={{ textDecoration: "none" }}>Who can/ Can't Donate</a>
