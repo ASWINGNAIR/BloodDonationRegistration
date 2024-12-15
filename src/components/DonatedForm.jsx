@@ -49,7 +49,7 @@ function DonationForm() {
       console.log(result);
 
       if(result.status>=200 && result.status<300){
-        alert('added successfully')
+        alert('Donation details filled successfully')
         handleClose()
       }
       else{
@@ -200,7 +200,7 @@ function DonationForm() {
         </Modal.Body>
         <Modal.Footer style={modalStyles.modalContent}>
           <Button className="btn btn-danger btn-sm" variant="secondary" onClick={handleCancel}>
-            Close
+            Cancel
           </Button>
         </Modal.Footer>
       </Modal>

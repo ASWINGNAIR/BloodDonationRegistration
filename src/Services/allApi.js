@@ -2,11 +2,10 @@ import {commonApi} from"./commonApi";
 import {serverUrl} from "./ServerUrl";
 
 export const registerlists = async (reqBody) => {
-   return await commonApi("post", `${serverUrl}/RegisteredDetails`, reqBody);
+   return await commonApi("POST", `${serverUrl}/RegisteredDetails`, reqBody);
 };
 export const   registerlistered = async () => {
-
-    return  await commonApi("get", `${serverUrl}/RegisteredDetails`, "");
+    return  await commonApi("GET", `${serverUrl}/RegisteredDetails`, "");
 }
 
 // add donation form details

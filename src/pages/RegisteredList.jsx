@@ -4,29 +4,23 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 function RegisteredList() {
-  const [RegisteredData, setRegisteredData] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  const fetchRegisteredData = async () => {
   
-    try {
-      const result = await registerlistered();
-      console.log('Fetched data:', result);
-      setRegisteredData(result.data);
-    } catch (error) {
-      console.error('Error fetching registered data:', error);
-    } finally {
-      setLoading(false);
+   const [donation ,setDonation] =useState([])
+  
+    const getAllDetails = async()=>{
+      const result = await registerlistered()
+        
+      setDonation(result.data)
     }
-  };
-
-  useEffect(() => {
-    fetchRegisteredData();
-  }, [RegisteredData]);
+    console.log(donation);
+    
+    useEffect(()=>{
+      getAllDetails()
+    },[])
 
   return (
     <div className='pt-5'>
-      <h1 className='text-danger text-center text-4xl mb-5 py-5'>Registered List</h1>
+      <h1 className='text-danger text-center text-4xl mb-5 py-5 mt-4'>Registered List</h1>
       <div>
         <table className='w-100 border border-secondary mb-5'>
           <thead>
@@ -41,12 +35,8 @@ function RegisteredList() {
             </tr>
           </thead>
           <tbody>
-            {loading ? (
-              <tr>
-                <td colSpan="6" className="text-center">Loading...</td>
-              </tr>
-            ) : RegisteredData.length > 0 ? (
-              RegisteredData.map((item, index) => (
+            {donation.length > 0 ? (
+              donation.map((item, index) => (
                 <tr key={item.id || index} className='text-center'>
                   <td className='border border-secondary'>{index + 1}</td>
                   <td className='border border-secondary'>{item?.name}</td>

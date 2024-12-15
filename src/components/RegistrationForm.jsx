@@ -9,7 +9,9 @@ function RegistrationForm() {
 
   const [show, setShow] = useState(false);
 
-  const handleClose = () => setShow(false);
+  const handleClose = () => {setShow(false);
+    handleCancel()
+  }
   const handleShow = () => setShow(true);
 
   const [formData, setFormData] = useState({
@@ -19,52 +21,48 @@ function RegistrationForm() {
     location:'',
     contact: '',
   });
+  console.log(formData);
+
+
+  const handleCancel=()=>{
+    setFormData({
+      name: '',
+      age: '',
+      bloodGroup: '',
+      location:'',
+      contact: '',
+    })
+  }
+  
 
   
-  const [errors, setErrors] = useState({});
 
   const bloodGroups = ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'];
 
   
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
+  const handleSubmit = async() => {
+    const {name,age,bloodGroup,location,contact} = formData
 
-  
-  const validate = () => {
-    const newErrors = {};
-    if (!formData.name.trim()) newErrors.name = 'Name is required.';
-    if (!formData.age || formData.age <= 0) newErrors.age = 'Valid age is required.';
-    if (!formData.bloodGroup) newErrors.bloodGroup = 'Blood group is required.';
-    if (!formData.location) newErrors.location = 'Location is required.';
-    if (!formData.contact.trim() || formData.contact.length !== 10)
-      newErrors.contact = 'Valid 10-digit contact number is required.';
-    return newErrors;
-  };
-
- 
-  const handleSubmit =async (e) => {
-    e.preventDefault(); 
-    const formErrors = validate();
-    if (Object.keys(formErrors).length > 0) {
-      setErrors(formErrors);
-    } else {
-      setErrors({});
-      const result =await registerlists (formData)
-      console.log (result)
-      alert(`Form submitted successfully! \nData: ${JSON.stringify(formData, null, 2)}`);
-     
-      setFormData({
-        name: '',
-        age: '',
-        bloodGroup: '',
-        location:'',
-        contact: '',
-      });
-      handleClose ()
+    if(!name || !age || !bloodGroup || !location || !contact){
+      alert('Please fill the form completely')
     }
-  };
+
+    else{
+      
+      const result = await registerlists({name,age,bloodGroup,location,contact}) 
+      console.log(result);
+
+      if(result.status>=200 && result.status<300){
+        alert('Registration completed successfully')
+        handleClose()
+      }
+      else{
+        alert('something went wrong')
+        handleCancel()
+      }
+      
+    }
+  }
 
   
   
@@ -82,92 +80,87 @@ function RegistrationForm() {
    <Modal.Body style={modalStyles.modalContent}  >
    <div style={modalStyles.modalform} className="container mt-5 p-5 border rounded-3  shadow-lg">
       <h2 className="text-center text-danger fw-bold mb-4">Blood Donation Registration</h2>
-      <form   onSubmit={handleSubmit}>
-        
-      
-        <div  className="mb-3">
-          <label  className="form-label fw-bold text-danger">Name:</label>
-          <input
-            type="text"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            className="form-control"
-            placeholder="Enter your name"
-          />
-          {errors.name && <div className="text-danger mt-1">{errors.name}</div>}
-        </div>
+            <form>
 
-       
-        <div className="mb-3">
-          <label className="form-label fw-bold text-danger">Age:</label>
-          <input
-            type="number"
-            name="age"
-            value={formData.age}
-            onChange={handleChange}
-            className="form-control"
-            placeholder="Enter your age"
-          />
-          {errors.age && <div className="text-danger mt-1">{errors.age}</div>}
-        </div>
 
-       
-        <div className="mb-3">
-          <label className="form-label fw-bold text-danger">Blood Group:</label>
-          <select
-            name="bloodGroup"
-            value={formData.bloodGroup}
-            onChange={handleChange}
-            className="form-select"
-          >
-            <option value="">Select</option>
-            {bloodGroups.map((group, index) => (
-              <option key={index} value={group}>
-                {group}
-              </option>
-            ))}
-          </select>
-          {errors.bloodGroup && <div className="text-danger mt-1">{errors.bloodGroup}</div>}
-        </div>
+              <div className="mb-3">
+                <label className="form-label fw-bold text-danger">Name:</label>
+                <input
+                  type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  className="form-control"
+                  placeholder="Enter your name"
+                />
+              </div>
 
-        <div className="mb-3">
-          <label className="form-label fw-bold text-danger">Location:</label>
-          <input
-            type="text"
-            name="location"
-            value={formData.location}
-            onChange={handleChange}
-            className="form-control"
-            placeholder="Enter your location"
-          />
-          {errors.location && <div className="text-danger mt-1">{errors.location}</div>}
-        </div>
 
-     
-        <div className="mb-3">
-          <label className="form-label fw-bold text-danger">Contact:</label>
-          <input
-            type="text"
-            name="contact"
-            value={formData.contact}
-            onChange={handleChange}
-            className="form-control"
-            placeholder="Enter your contact number"
-          />
-          {errors.contact && <div className="text-danger mt-1">{errors.contact}</div>}
-        </div>
+              <div className="mb-3">
+                <label className="form-label fw-bold text-danger">Age:</label>
+                <input
+                  type="number"
+                  name="age"
+                  value={formData.age}
+                  onChange={(e) => setFormData({ ...formData, age: e.target.value })}
+                  className="form-control"
+                  placeholder="Enter your age"
+                />
+              </div>
 
-       
-        <button type="submit" className="btn btn-danger w-100 fw-bold mt-3">
-          Submit
-        </button>
-      </form>
+
+              <div className="mb-3">
+                <label className="form-label fw-bold text-danger">Blood Group:</label>
+                <select
+                  name="bloodGroup"
+                  value={formData.bloodGroup}
+                  onChange={(e) => setFormData({ ...formData, bloodGroup: e.target.value })}
+                  className="form-select"
+                >
+                  <option value="">Select</option>
+                  {bloodGroups.map((group, index) => (
+                    <option key={index} value={group}>
+                      {group}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <div className="mb-3">
+                <label className="form-label fw-bold text-danger">Location:</label>
+                <input
+                  type="text"
+                  name="location"
+                  value={formData.location}
+                  onChange={(e) => setFormData({ ...formData, location: e.target.value })}
+                  className="form-control"
+                  placeholder="Enter your location"
+                />
+              </div>
+
+
+              <div className="mb-3">
+                <label className="form-label fw-bold text-danger">Contact:</label>
+                <input
+                  type="text"
+                  name="contact"
+                  value={formData.contact}
+                  onChange={(e) => setFormData({ ...formData, contact: e.target.value })}
+                  className="form-control"
+                  placeholder="Enter your contact number"
+                />
+              </div>
+
+
+              <button type="button" onClick={handleSubmit} className="btn btn-danger w-100 fw-bold mt-2">
+                Submit
+              </button>
+            </form>
     </div>
 
    </Modal.Body>
    <Modal.Footer style={modalStyles.modalContent}>
-     <Button className='btn btn-danger' variant="secondary" onClick={handleClose}>
+     <Button className='btn btn-danger' variant="secondary" onClick={handleCancel}>
        Close
      </Button>
      
