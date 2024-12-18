@@ -7,7 +7,7 @@ import { faDroplet} from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import RegistrationForm from '../components/RegistrationForm'
 import DonatedForm from '../components/DonatedForm'
-import SearchBlood from './SearchBlood';
+
 
 function Header() {
   
@@ -26,18 +26,12 @@ function Header() {
               <Nav.Link href="#" className="text-white">
               </Nav.Link>
 
-              <SearchBlood/>
+              
 
               <RegistrationForm  />
 
               <DonatedForm/>
 
-              {/* <Button className="btn bg-transparent rounded-5 ms-md-3 my-2 my-md-0">
-                Register as a Donor
-              </Button> */}
-              {/* <Button className="btn bg-white text-black rounded-5 ms-2 my-2 my-md-0">
-                Fill this after Donation
-              </Button> */}
             </Nav>
           </Navbar.Collapse>
         </Container>
