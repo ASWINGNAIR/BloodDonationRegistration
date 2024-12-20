@@ -80,7 +80,7 @@ function RegisteredList() {
           <tbody>
             {donation.length > 0 ? (
               donation.filter((item)=>{
-                return search.toLowerCase() === '' ? item : item.bloodGroup.toLowerCase().includes(search)
+                return search.toUpperCase() === '' ? item : item.bloodGroup.toUpperCase().includes(search)
               }).map((item, index) => (
                 <tr key={item.id || index} className='text-center'>
                   <td className='border border-secondary'>{index + 1}</td>

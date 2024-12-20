@@ -1,5 +1,6 @@
 import React from 'react'
-
+import bloodImg from '../assets/bloodImg.jpg'
+import donBlood from '../assets/donBlood.jpg'
 
 function Home() {
 
@@ -7,7 +8,7 @@ function Home() {
   return (
     <> 
       <div className="container-fluid p-4 bg-white">
-        <div className="row" id='About'>
+        <div className="row" >
           <div className="col-md-3" >
             <div className='p-3 rounded shadow-lg d-none d-md-block' style={{ width: "350px", marginTop: "80px", position: "fixed", top: "80px", left: "20px"}} >
               <div className="d-flex flex-column">
@@ -21,8 +22,9 @@ function Home() {
           </div>
 
           <div className="col-md-9">
-            <div >
-              <h1 className='text-center text-black' style={{ marginTop: "100px" }} >About Us</h1>
+            <img src={bloodImg} alt="" className='mt-5 w-100' style={{height:"600px"}}/>
+            <div  id='About' >
+              <h1 className='text-center text-black' style={{ marginTop: "100px" }}  >About Us</h1>
               <p className='px-5 fw-bold ' style={{ textAlign: "justify", lineHeight: '2' }}>Have  you  at  anytime  witnessed  a  relative  of  yours  or  a  close  friend  searching  frantically  for  a  blood  donor ,  when  blood  banks  say  out  of  stock ,  the  donors  in  mind  are  out  of  reach  and  the  time  keeps  ticking ?  Have  you  witnessed  loss  of  life  for  the  only  reason  that  a  donor  was  not  available  at  the  most  needed  hour ?  Is  it  something  that  we  as  a  society  can  do nothing  to  prevent ?  This  thought  laid  our  foundation .</p>
               <p className='px-5 fw-bold mt-4 ' style={{ textAlign: "justify", lineHeight: '2' }}>"HEART TO HEART"  is  an  organization  that  brings  voluntary  blood  donors  and  those  in  need  of  blood  on  to  a  common  platform .   Through  this  website ,  we  seek  donors  who  are  willing  to  donate  blood ,  as  well  as  provide  the  timeliest  support  to  those  in  frantic  need  of  it .</p>
               <p className=' px-5 fw-bold mt-4' style={{ textAlign: "justify", lineHeight: '2' }}><span className='fs-5 text-primary'>Our Mission</span> <br /> Our mission is to fulfill every blood request in the country with a promising web portal and motivated individuals who are willing to donate blood. <br />Connect: Bring together donors and recipients in an easy and efficient manner. <br />Empower: Equip individuals with the tools to make a difference in their communities. <br />Inspire: Foster awareness about the importance of blood donation and encourage people to become heroes in someone’s story.</p>
@@ -32,6 +34,7 @@ function Home() {
 
             <div id='facts'>
             <h1  className='text-center text-black' style={{ marginTop: "80px" }}>Blood Donation Facts</h1>
+            <img src={donBlood} alt="" className='my-5 w-100 ' />
             <p className=' px-5 fw-bold mt-4' style={{ textAlign: "justify" }}><span className='fs-5 text-primary'>Facts about blood needs</span> <br /><span className='fs-4'>.</span> Every year our nation requires about 5 Crore units of blood, out of which only a meager 2.5 Crore units of blood are available. <br /><span className='fs-4'>.</span>The gift of blood is the gift of life. There is no substitute for human blood. <br /><span className='fs-4'>.</span>Every two seconds someone needs blood.<br /><span className='fs-4'>.</span>More than 38,000 blood donations are needed every day.<br /><span className='fs-4'>.</span>A total of 30 million blood components are transfused each year.</p>
             <p className=' px-5 fw-bold mt-4' style={{ textAlign: "justify" }}><span className='fs-5 text-primary'>Facts about the blood donation process</span> <br /><span className='fs-4'>.</span>Donating blood is a safe process. A sterile needle is used only once for each donor and then discarded. <br /><span className='fs-4'>.</span>Blood donation is a simple four-step process: registration, medical history and mini-physical, donation and refreshments. <br /><span className='fs-4'>.</span>Every blood donor is given a mini-physical, checking the donor's temperature, blood pressure, pulse and hemoglobin to ensure it is safe for the donor to give blood.<br /><span className='fs-4'>.</span>The actual blood donation typically takes less than 10-12 minutes. The entire process, from the time you arrive to the time you leave, takes about an hour and 15 min.<br /><span className='fs-4'>.</span>The average adult has about 10 units of blood in his body. Roughly 1 unit is given during a donation.</p>
             <p className=' px-5 fw-bold mt-4' style={{ textAlign: "justify" }}><span className='fs-5 text-primary'>Facts about blood and its components</span> <br /><span className='fs-4'>.</span>Blood makes up about 7 percent of your body's weight. <br /><span className='fs-4'>.</span>There are four types of transfusable products that can be derived from blood: red cells, platelets, plasma and cryoprecipitate. Typically, two or three of these are produced from a unit of donated whole blood – hence each donation can help save up to three lives. <br /><span className='fs-4'>.</span>Donors can give either whole blood or specific blood components only. The process of donating specific blood components – red cells, plasma or platelets – is called apheresis.<br /><span className='fs-4'>.</span>Donated platelets must be used within five days of collection.<br /><span className='fs-4'>.</span>Healthy bone marrow makes a constant supply of red cells, plasma and platelets. The body will replenish the elements given during a blood donation – some in a matter of hours and others in a matter of weeks.</p>

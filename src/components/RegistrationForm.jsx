@@ -43,28 +43,25 @@ function RegistrationForm() {
   const handleSubmit = async() => {
     const {name,age,bloodGroup,location,contact} = formData
 
-    if(!name || !age || !bloodGroup || !location || !contact){
-      alert('Please fill the form completely')
-    }
+  if (!name || !age || !bloodGroup || !location || !contact) {
+    alert('Please fill the form completely');
+  } else if (age < 18 || age > 60) {
+    alert('Your age is not applicable for blood donation');
+    handleClose()
+  } else {
+    const result = await registerlists({name,age,bloodGroup,location,contact});
+    console.log(result);
 
-    else{
-      
-      const result = await registerlists({name,age,bloodGroup,location,contact}) 
-      console.log(result);
-
-      if(result.status>=200 && result.status<300){
-        alert('Registration completed successfully')
-        handleClose()
-      }
-      else{
-        alert('something went wrong')
-        handleCancel()
-      }
-      
+    if (result.status >= 200 && result.status < 300) {
+      alert('Registration completed successfully');
+      handleClose();
+    } else {
+      alert('Something went wrong');
+      handleCancel();
     }
   }
+}
 
-  
   
 
   return (
